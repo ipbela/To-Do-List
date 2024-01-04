@@ -1,13 +1,16 @@
+//Gets the elements created in HTML
 const todoInput = document.querySelector(".todo-input");
 const todoButton = document.querySelector(".todo-button");
 const todoList = document.querySelector(".todo-list");
 const filterOption = document.querySelector(".filter-todo");
 
+//add events
 document.addEventListener("DOMContentLoaded", getLocalTodos);
 todoButton.addEventListener("click", addTodo);
 todoList.addEventListener("click", deleteCheck);
 filterOption.addEventListener("change", filterTodo);
 
+//function to add tasks
 function addTodo(event) {
     event.preventDefault();
     const todoDiv = document.createElement("div");
@@ -20,11 +23,13 @@ function addTodo(event) {
     //ADDING TO LOCAL STORAGE 
     saveLocalTodos(todoInput.value);
     
+    //add check button
     const completedButton = document.createElement("button");
     completedButton.innerHTML = '<i class="fas fa-check-circle"></li>';
     completedButton.classList.add("complete-btn");
     todoDiv.appendChild(completedButton);
 
+    //add trash button
     const trashButton = document.createElement("button");
     trashButton.innerHTML = '<i class="fas fa-trash"></li>';
     trashButton.classList.add("trash-btn");
@@ -34,6 +39,7 @@ function addTodo(event) {
     todoInput.value = "";
 }
 
+//delete task
 function deleteCheck(e) {
     const item = e.target;
 
@@ -53,6 +59,7 @@ function deleteCheck(e) {
     }
 }
 
+//function for filtering tasks
 function filterTodo(e) {
     const todos = todoList.childNodes;
     todos.forEach(function(todo) {
